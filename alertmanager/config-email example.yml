@@ -1,0 +1,25 @@
+global:
+  resolve_timeout: 1m
+  smtp_from: <from email>
+  smtp_smarthost: smtp.ukr.net:465
+  smtp_auth_username: <from email>
+  smtp_auth_password: <from email password>
+  smtp_auth_secret: null
+  smtp_auth_identity: ""
+  smtp_require_tls: false
+route:
+  repeat_interval: 1m
+  receiver: email-1
+  routes:
+    - match:
+        alertname: httpd_down
+      receiver: email-1
+
+    - match:
+        alertname: nginx_down
+      receiver: email-1
+
+receivers:
+  - name: email-1
+    email_configs:
+      - to: <to email>

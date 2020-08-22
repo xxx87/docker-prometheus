@@ -12,6 +12,7 @@ GRAFANA_URL=${GRAFANA_URL:-http://$GF_SECURITY_ADMIN_USER:$GF_SECURITY_ADMIN_PAS
 DATASOURCES_PATH=${DATASOURCES_PATH:-/etc/grafana/datasources}
 DASHBOARDS_PATH=${DASHBOARDS_PATH:-/etc/grafana/dashboards}
 
+apk add curl
 # Generic function to call the Vault API
 grafana_api() {
   local verb=$1
@@ -33,7 +34,7 @@ wait_for_api() {
   while ! grafana_api GET /api/user/preferences
   do
     sleep 5
-  done 
+  done
 }
 
 install_datasources() {
