@@ -53,7 +53,7 @@ services:
     volumes:
       - ./alertmanager:/etc/alertmanager/
     command:
-      - "--config.file=/etc/alertmanager/config.yml"
+      - "--config.file=/etc/alertmanager/config-email.yml"
       - "--storage.path=/alertmanager"
       - "--web.listen-address=0.0.0.0:9093"
     restart: unless-stopped
